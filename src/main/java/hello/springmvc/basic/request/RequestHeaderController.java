@@ -15,12 +15,13 @@ import java.util.Locale;
 @RestController
 public class RequestHeaderController {
 
-    @RequestMapping("/headers")
+    @RequestMapping("/headers") // 모든 메서드 다 받음
     public String headers(HttpServletRequest request,
                           HttpServletRequest response,
+                          // 스프링에서 추가됨
                           HttpMethod httpMethod,
                           Locale locale,
-                          @RequestHeader MultiValueMap<String, String> headerMap,
+                          @RequestHeader MultiValueMap<String, String> headerMap, // 멀티밸류: 키하나에 다양한 것을 저장
                           @RequestHeader("host") String host,
                           @CookieValue(value = "myCookie", required = false) String cookie
                           ) {
