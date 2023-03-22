@@ -7,12 +7,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-//@Slf4j
-@RestController
+//@Slf4j <- 로그
+@RestController // API 방식, 스프링의 컨테이너에 LogTestController 객체(bean)를 집어 넣음
 public class LogTestController {
+
+
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
+
+    // 서블릿이 호출됨
     @RequestMapping("/log-test")
     public String logTest() {
         String name = "Spring";
