@@ -15,6 +15,14 @@ import java.io.IOException;
 
 @Slf4j
 @RestController
+
+/*
+@리스폰스바디
+-http 메시지 바디에 직접 내용을 입력
+-httpMessageConverter 가 동작, 안쓰먄 viewResolver 가 동작 -> hello를 반환하면 /response/hello.html로 반환해줌
+-문자를 응답해야한다면? StringHttpMessageConverter
+-객체로 응답해야한다면? MappingJackson2HttpMessageConverter
+ */
 public class ResponseBodyController {
 
     @GetMapping("/response-body-string-v1")
@@ -53,5 +61,6 @@ public class ResponseBodyController {
         helloData.setAge(20);
         return helloData;
     }
+
 
 }
