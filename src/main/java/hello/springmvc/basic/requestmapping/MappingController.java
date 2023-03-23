@@ -81,7 +81,7 @@ public class MappingController {
      * headers="mode=debug"
      * headers="mode!=debug" (! = )
      */
-    @GetMapping(value = "/mapping-header", headers = "mode=debug")
+    @GetMapping(value = "/mapping-header", headers = "mode=debug") // 헤더 까지 일치해야 매핑
     public String mappingHeader() {
         log.info("mappingHeader");
         return "ok";
@@ -89,7 +89,7 @@ public class MappingController {
 
     /**
      * Content-Type 헤더 기반 추가 매핑 Media Type
-     * consumes="application/json" // 서버에서 읽을 때 이걸 읽어라
+     * consumes="application/json" // 서버가 읽을 때 이걸 읽어라
      * consumes="!application/json"
      * consumes="application/*"
      * consumes="*\/*"

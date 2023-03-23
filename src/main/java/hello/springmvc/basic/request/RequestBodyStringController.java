@@ -20,6 +20,7 @@ import java.nio.charset.StandardCharsets;
 @Controller
 public class RequestBodyStringController {
 
+    // 서블릿의 방식
     @PostMapping("/request-body-string-v1")
     public void requestBodyString(HttpServletRequest request, HttpServletResponse response) throws IOException {
         ServletInputStream inputStream = request.getInputStream();
@@ -30,7 +31,7 @@ public class RequestBodyStringController {
         response.getWriter().write("ok");
     }
 
-    @PostMapping("/request-body-string-v2")
+    @PostMapping("/request-body-string-v2") // 단방향
     public void requestBodyStringV2(InputStream inputStream, Writer responseWriter) throws IOException {
 
         String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
@@ -38,7 +39,7 @@ public class RequestBodyStringController {
         responseWriter.write("ok");
     }
 
-    @PostMapping("/request-body-string-v3")
+    @PostMapping("/request-body-string-v3") // 양방향
     public HttpEntity<String> requestBodyStringV3(HttpEntity<String> httpEntity) throws IOException {
 
         String messageBody = httpEntity.getBody();
@@ -47,8 +48,10 @@ public class RequestBodyStringController {
         return new HttpEntity<>("ok");
     }
 
+    // 1. 쿼리파라미타 : @리퀘스트파람, @모델어트리뷰트
+    // 2. 바디 : @리퀘스트바디
     @ResponseBody
-    @PostMapping("/request-body-string-v4")
+    @PostMapping("/request-body-string-v4") // 객체로 읽음  , row
     public String requestBodyStringV4(@RequestBody String messageBody) {
         log.info("messageBody={}", messageBody);
         return "ok";

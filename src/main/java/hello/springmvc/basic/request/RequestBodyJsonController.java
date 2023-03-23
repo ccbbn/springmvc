@@ -28,16 +28,19 @@ public class RequestBodyJsonController {
 
     @PostMapping("/request-body-json-v1")
     public void requestBodyJsonV1(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        //@ResponseBody
         ServletInputStream inputStream = request.getInputStream();
-        String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
-
+        String messageBody = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8); //읽을 때 utf8로 읽음
+        //
         log.info("messageBody={}", messageBody);
-        HelloData helloData = objectMapper.readValue(messageBody, HelloData.class);
+        HelloData helloData = objectMapper.readValue(messageBody, HelloData.class); /// 메시지바디를 헬로데이터로 읽음
         log.info("username={}, age={}", helloData.getUsername(), helloData.getAge());
 
         response.getWriter().write("ok");
     }
 
+    // HttpMassageConverter -> 에이치티티피 메시지를 읽어서 변환해주는 것
+    // StringHttpMassageConverter 적용
     @ResponseBody
     @PostMapping("/request-body-json-v2")
     public String requestBodyJsonV2(@RequestBody String messageBody) throws IOException {
@@ -49,8 +52,9 @@ public class RequestBodyJsonController {
         return "ok";
     }
 
+    // HttpMassageConverter -> MappingJackson2HttpMessageConverter
     @ResponseBody
-    @PostMapping("/request-body-json-v3")
+    @PostMapping("/request-body-json-v3") // 스트링에서 받던 거를 객체를 받음
     public String requestBodyJsonV3(@RequestBody HelloData data) {
         log.info("username={}, age={}", data.getUsername(), data.getAge());
         return "ok";
