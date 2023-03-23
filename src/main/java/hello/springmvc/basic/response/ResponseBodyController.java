@@ -22,6 +22,8 @@ public class ResponseBodyController {
         response.getWriter().write("ok");
     }
 
+
+    //ResponseEntity<String> : 스프링꺼
     @GetMapping("/response-body-string-v2")
     public ResponseEntity<String> responseBodyV2() {
         return new ResponseEntity<>("ok", HttpStatus.OK);
@@ -31,8 +33,9 @@ public class ResponseBodyController {
     @GetMapping("/response-body-string-v3")
     public String responseBodyV3() {
         return "ok";
-    }
+    } // 바디에 바로 쳐 넣음
 
+    // 객체를 던진거를 스프링이 제이슨화 해줌, http메시지 컨버터가 제이슨형식으로 변환되어 객체를 던짐
     @GetMapping("/response-body-json-v1")
     public ResponseEntity<HelloData> responseBodyJsonV1() {
         HelloData helloData = new HelloData();
