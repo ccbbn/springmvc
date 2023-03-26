@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
+// 서버에서 클라로 제이슨으로 데이터 보냄
 @Slf4j
 @RestController
 
